@@ -59,7 +59,7 @@ describe('PriorityQueue', () => {
   })
 
   context('front()', () => {
-    it.only('Returns the front element in queue with the highest priority', () => {
+    it('Returns the front element in queue with the highest priority', () => {
       const front = new PriorityQueue()
       front.enqueue("foo", 500)
       expect(front.front().priority).to.equal(500) &&
@@ -82,7 +82,8 @@ describe('PriorityQueue', () => {
       const front = new PriorityQueue()
       front.enqueue("foo", 500)
       front.enqueue("boo", 400)
-      expect(front.front().tail.data).to.equal("boo") &&
+      front.front()
+      expect(front.tail.data).to.equal("boo") &&
       expect(front.size).to.equal(2)
     })
   })
@@ -103,8 +104,9 @@ describe('PriorityQueue', () => {
       back.enqueue("foo", 500)
       back.enqueue("boo", 400)
       back.enqueue("BMW", 300)
-      expect(back.back().tail.data).to.equal("BMW") &&
+      expect(back.back().data).to.equal("BMW") &&
       expect(back.head.data).to.equal("foo") &&
+      expect(back.tail.data).to.equal("BMW") &&
       expect(back.size).to.equal(3)
     })
   })
@@ -113,6 +115,7 @@ describe('PriorityQueue', () => {
     it('Returns and removed an element with priority number from the front of the queue.', () => {
       const myDequeue = new PriorityQueue()
       myDequeue.enqueue("foo", 100)
+
       expect(myDequeue.dequeue().data).to.equal("foo") &&
       expect(myDequeue.size).to.equal(0)
     })
@@ -125,7 +128,7 @@ describe('PriorityQueue', () => {
       myDequeue.enqueue("boo", 200)
       myDequeue.enqueue("BMW", 300)
       expect(myDequeue.dequeue().data).to.equal("BMW") &&
-      expect(myDequeue.dequeue.head).to.equal("boo") &&
+      expect(myDequeue.tail.next.data).to.equal("boo") &&
       expect(myDequeue.size).to.equal(2)
     })
   })

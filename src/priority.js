@@ -52,9 +52,65 @@ export default class PriorityQueue {
       }
   }
 
-  
-}
+  front() {
+    if(this.size === 0) {
+      return null
+    } else {
+      return this.head
+    }
+  }
 
+  back() {
+    if(this.size === 0) {
+      return null
+    } else {
+      return this.tail
+    }
+  }
+  dequeue() {
+    let removedHead = this.head
+    let cursor = this.tail;
+
+  if (this.size === 0) {
+    return null
+  }
+
+  if (this.size === 1 ) {
+    this.head = null
+    this.tail = null
+    this.size --
+    return removedHead
+  }
+
+  if (this.size === 2 ) {
+    this.head = this.tail
+    this.tail.next = null
+    this.size --
+    return removedHead
+  }
+  while(cursor.next.next) {
+    cursor = cursor.next
+  }
+
+  cursor.next = null
+  this.head = cursor
+  this.size--
+  return removedHead
+  }
+
+  isEmpty() {
+    if(this.size === 0) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  length() {
+    return this.size 
+  }
+
+}
 
 const myQueue = new PriorityQueue()
 
